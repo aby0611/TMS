@@ -21,9 +21,8 @@
         <div class="span4"><%= f.select :importance, options_for_select(["High","Medium","Low"]) %></div>
       </div>
       <div class="row">
-        <div class="span2"><%= f.label :owner, label: "Assign to " %></div>
-        <div class="span4"><%= f.select :owner, options_for_select([nil, "Steven","Terry","Brian"]) %></div>
-
+        <div class="span2"><%= f.label :owner_id, label: "Assign to " %></div>
+        <div class="span4"><%= f.select :owner_id, select_owner_options, include_blank: true %></div>
       </div>
       <div class="row">
         <div class="span2"><%= f.label :requirement %></div>

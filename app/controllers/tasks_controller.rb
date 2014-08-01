@@ -3,8 +3,10 @@ class TasksController < ApplicationController
 		@task = Task.new
 	end
 
-	def create
-		@task = Task.new(task_params)
+  def create
+    binding.pry
+	  @task = Task.new(task_params)
+	  @task.submitter = current_user
 
     if @task.save
       flash[:notice] = "Your task was created"
@@ -12,16 +14,19 @@ class TasksController < ApplicationController
     else
       render :new
     end
-	end
-
-	def show
-		@task = Task.find(params[:id])
-	end
-
-	private
-
-	def task_params
-    params.require(:task).permit(:title)
   end
 
+  def preview
+	  @task = Task.find(params[:id])
+  end
+
+  def show
+	  @task = Task.find(params[:id])
+  end
+
+  private
+
+  def task_params
+    params.require(:task).permit!
+  end
 end

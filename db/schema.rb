@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728081027) do
+ActiveRecord::Schema.define(version: 20140811111216) do
 
   create_table "tasks", force: true do |t|
     t.datetime "created_at"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140728081027) do
     t.datetime "end_date"
     t.string   "title"
     t.integer  "submitter_id"
-    t.integer  "owener_id"
+    t.integer  "owner_id"
     t.integer  "priority"
     t.integer  "importance"
     t.integer  "progress"
