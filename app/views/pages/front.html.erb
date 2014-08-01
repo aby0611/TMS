@@ -1,0 +1,10 @@
+<h3>Owned by me</h3>
+
+<% Task.where(owner: current_user).each do |task| %>
+	<%= task %>
+<% end %>
+
+<h3>Reported by me</h3>
+<% Task.where(submitter: current_user).each do |task| %>
+	<%= task.title %>
+<% end %>
