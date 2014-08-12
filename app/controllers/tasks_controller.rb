@@ -4,7 +4,6 @@ class TasksController < ApplicationController
 	end
 
   def create
-    binding.pry
 	  @task = Task.new(task_params)
 	  @task.submitter = current_user
 
@@ -22,6 +21,7 @@ class TasksController < ApplicationController
 
   def show
 	  @task = Task.find(params[:id])
+    @comments = @task.comments
   end
 
   private

@@ -5,4 +5,16 @@
     <span class='quiet'>reported by</span> <%= link_to @task.submitter.english_name, user_path(@task.submitter) %>
     <small>at <%= display_datetime(@task.created_at) %></small>
   </div>
+
+  <div class="span8">
+    <%= form_for [@task, Comment.new] do |f| %>
+      <%= f.text_area :content, rows: 5, label: "Write Comment" %>
+      <br>
+      <%= f.submit "Create comment", class: 'btn btn-primary' %>
+    <% end %>
+
+    <% @task.reload.comments.each do |comment| %>
+      <%= render 'comments/comment', comment: comment%>
+    <% end %>
+  </div>
 </div>
