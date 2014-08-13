@@ -1,14 +1,27 @@
 <div class="row">
   <div class='span8 well'>
     <h4><%= link_to "##{@task.id}, #{@task.title}", task_path(@task) %> </h4>
-    <%=link_to @task.owner.english_name, user_path(@task.owner) %>
+    <div class="well">
+      <h6>Owner: <%=link_to @task.owner.english_name, user_path(@task.owner) %> </h6>
+      <h6>Priority: <%= get_priority_name(@task.priority) %></h6>
+      <h6>Importance: <%= get_importance_name(@task.importance) %></h6>
+      <h6>Start date: <%= display_datetime(@task.start_date) %></h6>
+      <h6>Due date: <%= display_datetime %></h6>
+    </div>
+
     <span class='quiet'>reported by</span> <%= link_to @task.submitter.english_name, user_path(@task.submitter) %>
     <small>at <%= display_datetime(@task.created_at) %></small>
   </div>
 
+  <div class='span8 well'>
+    <h4>Requirement</h4>
+    <p><%= @task.requirement %></p>
+  </div>
+
   <div class="span8">
     <%= form_for [@task, Comment.new] do |f| %>
-      <%= f.text_area :content, rows: 5, label: "Write Comment" %>
+      <%= f.label :content, "Write Comment" %>
+      <%= f.text_area :content, rows: 5 %>
       <br>
       <%= f.submit "Create comment", class: 'btn btn-primary' %>
     <% end %>
