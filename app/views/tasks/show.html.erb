@@ -6,7 +6,7 @@
       <h6>Priority: <%= get_priority_name(@task.priority) %></h6>
       <h6>Importance: <%= get_importance_name(@task.importance) %></h6>
       <h6>Start date: <%= display_datetime(@task.start_date) %></h6>
-      <h6>Due date: <%= display_datetime %></h6>
+      <h6>Due date: <%= display_datetime(@task.end_date) %></h6>
     </div>
 
     <span class='quiet'>reported by</span> <%= link_to @task.submitter.english_name, user_path(@task.submitter) %>
@@ -17,6 +17,24 @@
     <h4>Requirement</h4>
     <p><%= @task.requirement %></p>
   </div>
+
+  <% if !@task.plan.blank? %>
+    <div class='span8 well'>
+      <h4>Plan</h4>
+      <p><%= simple_format(@task.plan) %></p>
+    </div>
+  <% end %>
+
+  <% if @task.plan.blank? %>
+    <div class="span8 well">
+      <h4>Plan</h4>
+      <%= form_for @task do |f| %>
+        <div class="span10"><%= f.text_area :plan, rows: 5 %>
+        </div>
+        <%= f.submit "Add plan", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="span8">
     <%= form_for [@task, Comment.new] do |f| %>
