@@ -1,4 +1,4 @@
-<h4>This is user page</h4>
+<h4>User info</h4>
 
 <div class='well'>
   <dl class='dl-horizontal'>
@@ -6,4 +6,23 @@
     <dd><%= @user.english_name %></dd>
     <dt>Email:</dt>
     <dd><%= @user.email %></dd>
+</div>
+
+<h4>Team info</h4>
+<div class='well'>
+  <dl class='dl-horizontal'>
+    <dt>Department name:</dt>
+    <dd><%= @user.team.name %></dd>
+
+    <% if @user.manager? %>
+      <dt>Members:</dt>
+      <% @user.members.each do |member| %>
+        <dd><%= link_to member.english_name, user_path(member) %></dd>
+      <% end %>
+    <% end %>
+
+    <% if !@user.manager? %>
+      <dt>Manager:</dt>
+      <dd><%= link_to @user.manager.english_name, user_path(@user.manager) %></dd>
+    <% end %>
 </div>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :require_user
+	before_action :require_user, only: [:show]
 
 	def new
 		@user = User.new
@@ -21,9 +21,8 @@ class UsersController < ApplicationController
 	end
 
 	private
-	 
+
 	def user_params
     params.require(:user).permit(:english_name, :password)
   end
-
 end

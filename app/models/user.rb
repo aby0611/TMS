@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
   def manager?
     Team.all.map(&:manager).include?(self)
   end
+
+  def members
+    self.team.members if manager?
+  end
+
+  def manager
+    self.team.manager
+  end
 end

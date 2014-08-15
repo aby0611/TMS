@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814155423) do
+ActiveRecord::Schema.define(version: 20140818112546) do
 
   create_table "comments", force: true do |t|
     t.integer  "task_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140814155423) do
     t.integer  "progress"
     t.text     "requirement"
     t.text     "plan"
+    t.string   "status"
   end
 
   create_table "teams", force: true do |t|

@@ -5,8 +5,9 @@
       <h6>Owner: <%=link_to @task.owner.english_name, user_path(@task.owner) %> </h6>
       <h6>Priority: <%= get_priority_name(@task.priority) %></h6>
       <h6>Importance: <%= get_importance_name(@task.importance) %></h6>
-      <h6>Start date: <%= display_datetime(@task.start_date) %></h6>
-      <h6>Due date: <%= display_datetime(@task.end_date) %></h6>
+      <h6>Start date: <%= display_datetime(@task.start_date) unless @task.start_date.nil? %></h6>
+      <h6>Due date: <%= display_datetime(@task.end_date) unless @task.end_date.nil? %></h6>
+      <h6>Status: <%= get_status_name(@task.status) %></h6>
     </div>
 
     <span class='quiet'>reported by</span> <%= link_to @task.submitter.english_name, user_path(@task.submitter) %>
@@ -35,6 +36,14 @@
       <% end %>
     </div>
   <% end %>
+
+  <div class="span8 well">
+    <h4>Progress</h4>
+    <%= form_for @task do |f| %>
+      <div class="span4"><%= f.select :status, select_status_options(@task.status) %></div>
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 
   <div class="span8">
     <%= form_for [@task, Comment.new] do |f| %>

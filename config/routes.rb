@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   resources :tasks, only: [:new, :create, :show, :edit, :update] do
     resources :comments, only: [:create]
   end
+
+  get 'assigned_tasks', to: 'pages#assigned_tasks'
+  get 'tasks_in_progress', to: 'pages#tasks_in_progress'
 end

@@ -4,9 +4,11 @@
   </li>
 </ul>
 <% if logged_in? %>
-  <div class="nav_item">
-    <%= link_to 'New task', new_task_path, class: 'btn btn-success btn-small' %>
-  </div>
+  <% if current_user.manager? %>
+    <div class="nav_item">
+      <%= link_to 'New task', new_task_path, class: 'btn btn-success btn-small' %>
+    </div>
+  <% end %>
 <% else%>
   <ul class="nav">
     <li>

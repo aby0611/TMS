@@ -23,6 +23,8 @@
       <div class="row">
         <div class="span2"><%= f.label :owner_id, label: "Assign to " %></div>
         <div class="span4"><%= f.select :owner_id, select_owner_options, include_blank: true %></div>
+        <div class="span2"><%= f.label :status, label: "Status" %></div>
+        <div class="span4"><%= f.select :status, select_status_options, include_blank: true %></div>
       </div>
       <div class="row">
         <div class="span2"><%= f.label :requirement %></div>

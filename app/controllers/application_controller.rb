@@ -20,6 +20,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_manager
+    if !current_user.manager?
+      flash[:error] = "Only manager can use this operation"
+      redirect_to root_path
+    end
+  end
+
   def require_admin
     access_denied unless logged_in? && current_user.admin?
   end
