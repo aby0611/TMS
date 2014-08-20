@@ -10,7 +10,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'jquery-rails'
+gem "jquery-rails", "~> 2.3.0"
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
@@ -28,3 +28,6 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'jquery-ui-rails'

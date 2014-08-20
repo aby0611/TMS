@@ -11,6 +11,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
 
-  get 'assigned_tasks', to: 'pages#assigned_tasks'
-  get 'tasks_in_progress', to: 'pages#tasks_in_progress'
+  resources :pages, only: [:index]
 end

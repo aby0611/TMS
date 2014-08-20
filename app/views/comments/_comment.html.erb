@@ -1,6 +1,6 @@
 <div class="row">
-  <div class='well span8'>
-    <%= comment.content %><br>
+  <div class='well span11'>
+    <div><%= comment.content %></div>
     <span class='quiet'>by </span><%= link_to comment.user.english_name, user_path(comment.user) %>
     <small>at <%= comment.created_at %></small>
   </div>

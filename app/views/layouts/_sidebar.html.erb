@@ -10,7 +10,7 @@
 
 <ul class="nav nav-list">
   <li class="nav-header">Assignments</li>
-  <li><%= link_to "New Tasks", assigned_tasks_path %></li>
-  <li><%= link_to "Tasks in progress", tasks_in_progress_path %></li>
+  <li><%= link_to "New Tasks", pages_path(filter: 'assign')  %></li>
+  <li><%= link_to "Tasks in progress", pages_path(filter: 'progress') %></li>
   <li><a href="#">Waiting to be evaluated</a></li>
 </ul>

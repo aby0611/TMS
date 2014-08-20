@@ -1,56 +1,61 @@
 <div class="row">
-  <div class='span8 well'>
+  <div class='span12 well'>
     <h4><%= link_to "##{@task.id}, #{@task.title}", task_path(@task) %> </h4>
-    <div class="well">
-      <h6>Owner: <%=link_to @task.owner.english_name, user_path(@task.owner) %> </h6>
-      <h6>Priority: <%= get_priority_name(@task.priority) %></h6>
-      <h6>Importance: <%= get_importance_name(@task.importance) %></h6>
-      <h6>Start date: <%= display_datetime(@task.start_date) unless @task.start_date.nil? %></h6>
-      <h6>Due date: <%= display_datetime(@task.end_date) unless @task.end_date.nil? %></h6>
-      <h6>Status: <%= get_status_name(@task.status) %></h6>
-    </div>
+    <div class="well span11">
+      <div class="span5">
+        <h5>Owner: <%=link_to @task.owner.english_name, user_path(@task.owner) %> </h5>
+        <h5>Priority: <%= get_priority_name(@task.priority) %></h5>
+        <h5>Importance: <%= get_importance_name(@task.importance) %></h5>
 
-    <span class='quiet'>reported by</span> <%= link_to @task.submitter.english_name, user_path(@task.submitter) %>
-    <small>at <%= display_datetime(@task.created_at) %></small>
-  </div>
-
-  <div class='span8 well'>
-    <h4>Requirement</h4>
-    <p><%= @task.requirement %></p>
-  </div>
-
-  <% if !@task.plan.blank? %>
-    <div class='span8 well'>
-      <h4>Plan</h4>
-      <p><%= simple_format(@task.plan) %></p>
-    </div>
-  <% end %>
-
-  <% if @task.plan.blank? %>
-    <div class="span8 well">
-      <h4>Plan</h4>
-      <%= form_for @task do |f| %>
-        <div class="span10"><%= f.text_area :plan, rows: 5 %>
+        <h5>Progress: <%= @task.progress %>%</h5>
+        <div class="progress progress-striped">
+          <div class="bar" style="width: <%= @task.progress %>%;"></div>
         </div>
-        <%= f.submit "Add plan", class: 'btn btn-primary' %>
+      </div>
+
+      <div class="span5 offset2">
+        <h5>Start date: <%= display_datetime(@task.start_date) unless @task.start_date.nil? %></h5>
+        <h5>Due date: <%= display_datetime(@task.end_date) unless @task.end_date.nil? %></h5>
+        <h5>Status: <%= get_status_name(@task.status) %></h5>
+      </div>
+    </div>
+
+    <div class="well span11">
+      <h5>Requirement</h5>
+      <p><%= @task.requirement %></p>
+    </div>
+
+    <% if !@task.plan.blank? %>
+      <div class='well span11'>
+        <h5>Plan</h5>
+        <p><%= simple_format(@task.plan) %></p>
+      </div>
+    <% end %>
+
+    <div class='well span11'>
+      <%= form_for @task do |f| %>
+        <h5>Status</h5>
+        <%= f.select :status, select_status_options(@task.status) %>
+        <% if @task.plan.blank? %>
+          <h5>Plan</h5>
+          <%= f.text_area :plan, rows: 5 %>
+        <% end %>
+        <%= f.submit "Update", class: 'btn btn-success pull-right pull-bottom' %>
       <% end %>
     </div>
-  <% end %>
 
-  <div class="span8 well">
-    <h4>Progress</h4>
-    <%= form_for @task do |f| %>
-      <div class="span4"><%= f.select :status, select_status_options(@task.status) %></div>
-      <%= f.submit "Update", class: 'btn btn-primary' %>
-    <% end %>
+    <div class='span11'>
+      <span class='quiet'>reported by</span> <%= link_to @task.submitter.english_name, user_path(@task.submitter) %>
+      <small>at <%= display_datetime(@task.created_at) %></small>
+    </div>
   </div>
 
-  <div class="span8">
+  <div class="span12">
     <%= form_for [@task, Comment.new] do |f| %>
       <%= f.label :content, "Write Comment" %>
-      <%= f.text_area :content, rows: 5 %>
-      <br>
-      <%= f.submit "Create comment", class: 'btn btn-primary' %>
+      <%= f.text_area :content, rows: 5, class: 'span10' %>
+      <%= f.label :progress, "Progress" %>
+      <%= f.select :progress, select_progress_options(@task.progress) %> <%= f.submit "Create comment", class: 'btn btn-primary offset4' %>
     <% end %>
 
     <% @task.reload.comments.each do |comment| %>

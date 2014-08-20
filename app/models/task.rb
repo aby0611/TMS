@@ -6,4 +6,9 @@ class Task < ActiveRecord::Base
   def update_status(status)
     self.owner = self.submitter if status == "reject"
   end
+
+  def update_progress(progress)
+    self.progress = progress
+    self.owner = self.submitter  if progress >= 90
+  end
 end

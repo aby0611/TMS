@@ -23,18 +23,17 @@
     </header>
     <div id="main" role="main">
       <div class="container-fluid">
+        <%= render 'layouts/messages' %>
         <div class="row-fluid">
           <% if logged_in? %>
             <div class="span3 sidebar">
               <%= render 'layouts/sidebar' %>
             </div>
             <div class="span9 main">
-              <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
           <% else %>
             <div class="span12">
-              <%= render 'layouts/messages' %>
               <%= yield %>
             </div>
           <% end %>

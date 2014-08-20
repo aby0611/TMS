@@ -1,5 +1,5 @@
 class Status < ActiveRecord::Base
-  @options = {"manager" => {"Assigned to" => "assign", "Cancel" => "cancel", "Stop" => "stop", "Close"=> "close"}, "member" => {"Accept" => "accept", "Reject" => "reject", "Reguet for extenstion" => "extenstion"}}
+  @options = {"manager" => {"Assigned to" => "assign", "Cancel" => "cancel", "Stop" => "stop", "Close"=> "close"}, "member" => {"Accept" => "accept", "Reject" => "reject", "Reguest for extenstion" => "extenstion"}}
 
   def self.options(user)
     if user.manager?

@@ -19,6 +19,10 @@ module ApplicationHelper
     options_for_select(Status.options(current_user), selected)
   end
 
+  def select_progress_options(selected=0)
+    options_for_select(Progress.options, selected)
+  end
+
   def get_priority_name(index)
     Priority.options.index(index)
   end
