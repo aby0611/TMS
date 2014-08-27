@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      session[:login_time] = DateTime.now
       flash[:notice] = "You're login"
       redirect_to root_path
     else

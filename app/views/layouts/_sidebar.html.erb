@@ -1,16 +1,121 @@
-<% if current_user.manager? %>
-  <ul class="nav nav-list">
-    <li class="nav-header">Supervisor</li>
-    <li><a href="#">Task Management</a></li>
-    <li><a href="#">Task Assignment</a></li>
-    <li><a href="#">Evaluation</a></li>
-    <li><a href="#">List of Assigned Tasks</a></li>
-  </ul>
-<% end %>
+<body topmargin="0" leftmargin="0">
+  <a name="top"></a>
+  <table cellspacing=0 cellpadding=0 width="200" height=100%>
+    <td width=200 nowrap valign=top height=100% bgcolor="">
+    <!-- MainMenu -->
+    <table cellspacing=1 cellpadding=1 width=100% height=100%>
 
-<ul class="nav nav-list">
-  <li class="nav-header">Assignments</li>
-  <li><%= link_to "New Tasks", pages_path(filter: 'assign')  %></li>
-  <li><%= link_to "Tasks in progress", pages_path(filter: 'progress') %></li>
-  <li><a href="#">Waiting to be evaluated</a></li>
-</ul>
+  <tr>
+    <td nowrap width=100% class="sectiontitled" background-color="#008CBB">
+      <%= link_to(logout_path) do %>
+        <span >
+          <%= image_tag "unlock.gif" %>
+        </span>
+        <font size=2 color="#FFFFFF">Sign-out</font>
+      <% end %>
+    </td>
+  </tr>
+
+  <tr>
+    <td nowrap width=100% class="sectiontitled">
+    <span ><%= image_tag "unlock.gif" %></span>
+    <font size=2><%= current_user.english_name %></font>
+    </td>
+  </tr>
+
+  <tr id=frmLogin bgcolor="" class="sectionitem">
+    <td nowrap width=100%>
+      <%= image_tag "ar.gif" %>
+      <%= link_to "My Detail", user_path(current_user) %><br>
+      ID: xxxxx<br>
+      Sign-in: <%= logged_in_time %><br>
+      </div>
+    </td>
+  </tr>
+
+  <% if current_user.manager? %>
+    <tr>
+      <td nowrap width=100% class="sectiontitled">
+      <span ><%= image_tag "unlock.gif" %></span>
+      <font size=2>Supervisor</font>
+      </td>
+    </tr>
+
+    <tr id=frmAdmin class="sectionitem" >
+      <td nowrap width=100%>
+        <%= image_tag "ar.gif" %>
+        <%= sidebar_link("Task Managerment", "manager_assign")  %>
+        <br>
+        <%= image_tag "ar.gif" %>
+        <%= link_to "Task Assignment", new_task_path %>
+        <br>
+        <%= image_tag "ar.gif" %>
+        <%= sidebar_link("Evaluation", "manager_evaluation")  %>
+        <br>
+        <%= image_tag "ar.gif" %>
+        <%= sidebar_link("Task Managerment", "manager_assign")  %>
+        <br>
+      </div></td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td nowrap width=100% class="sectiontitled">
+    <span ><%= image_tag "unlock.gif" %></span>
+    <font size=2>Events</font>
+    </td>
+  </tr>
+
+  <tr id=frmAdmin class="sectionitem" >
+    <td nowrap width=100%>
+      <%= image_tag "ar.gif" %>
+      <%= link_to "Expired Task", "#" %>
+      <br>
+    </div></td>
+  </tr>
+
+  <tr>
+    <td nowrap width=100% class="sectiontitled">
+    <span ><%= image_tag "unlock.gif" %></span>
+    <font size=2>Assignments</font>
+    </td>
+  </tr>
+
+  <tr id=frmAdmin class="sectionitem" >
+    <td nowrap width=100%>
+      <%= image_tag "ar.gif" %>
+      <%= sidebar_link("New Tasks", "assign")  %>
+      <br>
+      <%= image_tag "ar.gif" %>
+      <%= sidebar_link("Task in progress", "progress")  %>
+      <br>
+      <%= image_tag "ar.gif" %>
+      <%= link_to "Waiting to be evaluated", "#" %>
+      <br>
+    </div></td>
+  </tr>
+
+  <tr>
+    <td nowrap width=100% class="sectiontitled">
+    <span ><%= image_tag "unlock.gif" %></span>
+    <font size=2>User History</font>
+    </td>
+  </tr>
+
+  <tr id=frmAdmin class="sectionitem" >
+    <td nowrap width=100%>
+      <%= image_tag "ar.gif" %>
+      <%= link_to "Completed Tasks", "#" %>
+      <br>
+      <%= image_tag "ar.gif" %>
+      <%= link_to "Operation History", "#" %>
+      <br>
+      <%= image_tag "ar.gif" %>
+      <%= link_to "Upload File Record", "#" %>
+      <br>
+    </div></td>
+  </tr>
+
+  <br></div></td></tr>
+  </table></td></table>
+</body>

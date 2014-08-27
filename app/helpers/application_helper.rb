@@ -1,6 +1,10 @@
 module ApplicationHelper
 	def display_datetime(dt)
-    dt.strftime("%m/%d/%Y %l:%M%P")
+    dt.strftime("%m/%d/%Y %l:%M %P")
+  end
+
+  def logged_in_time
+    display_datetime(session[:login_time])
   end
 
   def select_owner_options(selected=nil)
@@ -33,5 +37,10 @@ module ApplicationHelper
 
   def get_status_name(index)
     Status.get_key(index)
+  end
+
+  def sidebar_link(sidebar_label, filter)
+    tasks = Task.get_by_filter(filter, current_user)
+    link_to "#{sidebar_label} (#{tasks.count})", pages_path(filter: filter)
   end
 end

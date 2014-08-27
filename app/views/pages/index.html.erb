@@ -1,16 +1,24 @@
-<h3>Reported by me table</h3>
+<h3><%= @title %></h3>
 <table id="pages" class="display">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Title</th>
       <th>Owner</th>
+      <th>Status</th>
+      <th>Due date</th>
     </tr>
   </thead>
 
   <tbody>
     <% @tasks.each do |task| %>
-      <td><%= task.title %></td>
+    <tr>
+      <td><%= "##{task.id}" %></td>
+      <td><%= link_to task.title, task_path(task) %></td>
       <td><%= task.owner.english_name %></td>
+      <td><%= get_status_name(task.status) %></td>
+      <td><%= display_datetime(task.end_date) unless task.end_date.nil? %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>

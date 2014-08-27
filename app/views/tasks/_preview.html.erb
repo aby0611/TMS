@@ -1,8 +1,0 @@
-<div class="row">
-  <div class='span8 well'>
-    <h4><%= link_to "##{task.id}, #{task.title}", task_path(task) %> </h4>
-    <%=link_to task.owner.english_name, user_path(task.owner) %>
-    <span class='quiet'>reported by</span> <%= link_to task.submitter.english_name, user_path(task.submitter) %>
-    <small>at <%= display_datetime(task.created_at) %></small>
-  </div>
-</div>

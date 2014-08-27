@@ -1,5 +1,5 @@
 class Status < ActiveRecord::Base
-  @options = {"manager" => {"Assigned to" => "assign", "Cancel" => "cancel", "Stop" => "stop", "Close"=> "close"}, "member" => {"Accept" => "accept", "Reject" => "reject", "Reguest for extenstion" => "extenstion"}}
+  @options = {"manager" => {"Assigned to" => "assign", "Cancel" => "cancel", "Stop" => "stop", "Close"=> "close"}, "member" => {"Accept" => "accept", "Rejected" => "reject", "Reguest for extenstion" => "extenstion"}}
 
   def self.options(user)
     if user.manager?
@@ -10,6 +10,10 @@ class Status < ActiveRecord::Base
   end
 
   def self.get_key(value)
-    @options["manager"].index(value) || @options["member"].index(value)
+    if value == "evaluation"
+      "Manager evaluation"
+    else
+      @options["manager"].index(value) || @options["member"].index(value)
+    end
   end
 end
